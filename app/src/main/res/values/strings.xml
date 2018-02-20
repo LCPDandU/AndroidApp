@@ -2,8 +2,7 @@
     <string name="app_name">LCPDandU</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
     <string name="title_events">Events</string>
-    <string name="title_notifications">Notifications</string>
     <string name="title_contact">Contact Us</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
