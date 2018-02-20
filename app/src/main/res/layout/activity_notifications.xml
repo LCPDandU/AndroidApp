@@ -6,4 +6,19 @@
     android:layout_height="match_parent"
     tools:context="edu.nmsu.cs.lcpdandu.Notifications">
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_action_name"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:onClick="clickHome"
+        android:text="Home"
+        android:textAlignment="center"
+        android:textColor="@android:color/background_light"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

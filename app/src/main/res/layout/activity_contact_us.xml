@@ -6,20 +6,30 @@
     android:layout_height="match_parent"
     tools:context="edu.nmsu.cs.lcpdandu.ContactUs">
 
-    <EditText
-        android:id="@+id/editText"
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_action_name"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:onClick="clickHome"
+        android:text="Home"
+        android:textAlignment="center"
+        android:textColor="@android:color/background_light"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:ems="10"
-        android:fontFamily="monospace"
-        android:inputType="textPersonName"
         android:text="Las Cruces Police Department"
-        android:textColor="@color/colorPrimaryDark"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="14sp"
         android:textStyle="bold"
-        android:typeface="sans"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="0dp" />
+        tools:layout_editor_absoluteX="98dp"
+        tools:layout_editor_absoluteY="16dp" />
 </android.support.constraint.ConstraintLayout>
