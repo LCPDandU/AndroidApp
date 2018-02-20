@@ -1,6 +1,7 @@
 package edu.nmsu.cs.lcpdandu;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,5 +17,13 @@ public class ContactUs extends AppCompatActivity {
 
     public void clickHome(View v) {
         startActivity(new Intent(ContactUs.this, HomePage.class));
+    }
+
+    public void clickFacebook(View v) {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(Uri.parse("http://www.las-cruces.org/departments/police-department"));
+        startActivity(intent);
     }
 }
