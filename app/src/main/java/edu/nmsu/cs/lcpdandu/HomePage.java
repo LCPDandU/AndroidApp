@@ -1,10 +1,13 @@
 package edu.nmsu.cs.lcpdandu;
 
+import android.app.Notification;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 public class HomePage extends AppCompatActivity {
@@ -17,14 +20,17 @@ public class HomePage extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                case R.id.navigation_events:
+                    Intent eventsIntent = new Intent(HomePage.this, DayList.class);
+                    startActivity(eventsIntent);
                     return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+                case R.id.navigation_contact:
+                    Intent contactIntent = new Intent(HomePage.this, ContactUs.class);
+                    startActivity(contactIntent);
                     return true;
                 case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                    Intent notificationsIntent = new Intent(HomePage.this, Notifications.class);
+                    startActivity(notificationsIntent);
                     return true;
             }
             return false;
