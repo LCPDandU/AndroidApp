@@ -23,12 +23,11 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@android:dimen/notification_large_icon_height"
+        android:layout_height="@android:dimen/notification_large_icon_width"
         android:contentDescription="@string/image_lcpd_patch"
-        android:scaleType="fitCenter"
+        android:scaleType="fitStart"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="parent"
         app:srcCompat="@drawable/lcpd_patch" />
 
@@ -36,11 +35,33 @@
         android:id="@+id/imageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="clickFacebook"
+        android:onClick="clickPoliceWebsite"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        app:srcCompat="@android:drawable/btn_star_big_on"
+        tools:layout_editor_absoluteX="164dp"
+        tools:layout_editor_absoluteY="238dp" />
+
+    <ImageButton
+        android:id="@+id/callButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="callPhone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton"
+        app:srcCompat="@android:drawable/stat_sys_phone_call_forward" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/contact_title"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>
