@@ -2,6 +2,7 @@ package edu.nmsu.cs.lcpdandu;
 
 import android.app.Notification;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -21,7 +22,7 @@ public class HomePage extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_events:
-                    Intent eventsIntent = new Intent(HomePage.this, DayList.class);
+                    Intent eventsIntent = new Intent(HomePage.this, Calendar.class);
                     startActivity(eventsIntent);
                     return true;
                 case R.id.navigation_contact:
@@ -31,6 +32,13 @@ public class HomePage extends AppCompatActivity {
                 case R.id.navigation_notifications:
                     Intent notificationsIntent = new Intent(HomePage.this, Notifications.class);
                     startActivity(notificationsIntent);
+                    return true;
+                case R.id.navigation_navigation_ask_city:
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_VIEW);
+                    intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                    intent.setData(Uri.parse("http://www.las-cruces.org/en/contact"));
+                    startActivity(intent);
                     return true;
             }
             return false;

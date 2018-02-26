@@ -5,6 +5,7 @@
     <string name="title_events">Events</string>
     <string name="title_contact">Contact Us</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_ask_city">Ask the City</string>
     <string name="image_lcpd_badge">LCPD Badge</string>
     <string name="image_lcpd_patch">LCPD Patch</string>
     <string name="button_home">Home</string>
