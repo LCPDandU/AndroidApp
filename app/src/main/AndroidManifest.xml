@@ -30,7 +30,8 @@
         <activity android:name=".Calendar" />
         <activity android:name=".DayList" />
         <activity android:name=".Notifications" />
-        <activity android:name=".ContactUs"></activity>
+        <activity android:name=".ContactUs" />
+        <activity android:name=".Git"></activity>
     </application>
 
 </manifest>
