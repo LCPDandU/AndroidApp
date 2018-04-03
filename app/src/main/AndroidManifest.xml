@@ -32,6 +32,11 @@
         <activity android:name=".DayList" />
         <activity android:name=".Notifications" />
         <activity android:name=".ContactUs" />
+        <activity
+            android:name=".Token"
+            android:exported="true" >
+        </activity>
+
         <activity android:name=".Git" />
 
 
