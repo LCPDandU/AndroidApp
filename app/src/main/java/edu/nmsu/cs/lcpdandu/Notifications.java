@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
@@ -18,14 +17,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
 
-import java.util.ArrayList;
-
 public class Notifications extends AppCompatActivity {
 
     TextView tvNotificationList;  // This will reference our notification list text box.
-
-    final ArrayList<NotificationObjects> NList = new ArrayList<>();
-    private ListView NListView;
     RequestQueue requestQueue;  // This is our requests queue to process our HTTP requests.
 
     String url = "http://tm4sp18.cs.nmsu.edu:8000/public/api/notifications";  // This is the API base URL (GitHub API)
@@ -35,24 +29,18 @@ public class Notifications extends AppCompatActivity {
         super.onCreate(savedInstanceState);  // This is some magic for Android to load a previously saved state for when you are switching between actvities.
         setContentView(R.layout.activity_notifications);  // This links our code to our layout which we defined earlier.
 
-        //this.tvNotificationList = (TextView) findViewById(R.id.tv_notification_list);  // Link our notificationsitory list text output box.
-        //this.tvNotificationList.setMovementMethod(new ScrollingMovementMethod());  // This makes our text box scrollable, for those big GitHub contributors with lots of notifications :)
-
+        this.tvNotificationList = (TextView) findViewById(R.id.tv_notification_list);  // Link our notificationsitory list text output box.
+        this.tvNotificationList.setMovementMethod(new ScrollingMovementMethod());  // This makes our text box scrollable, for those big GitHub contributors with lots of notifications :)
 
         requestQueue = Volley.newRequestQueue(this);  // This setups up a new request queue which we will need to make HTTP requests.
+
         getNotificationList();
-
-        NListView = (ListView) findViewById(R.id.notifications_list_view);
-        ListArrayAdapter adapter = new ListArrayAdapter(this, NList);
-        NListView.setAdapter(adapter);
-
     }
 
     private void addToNotificationList(String notificationID, String notificationTitle, String notificationDescription, String notificationDate, String notificationTime, String notificationAMPM) {
         String strRow = notificationID + "\n" + notificationTitle + "\n" + notificationDescription + "\n" + notificationDate + "\n" + notificationTime + " " + notificationAMPM;
-        //String currentText = tvNotificationList.getText().toString();
-        //this.tvNotificationList.setText(currentText + "\n\n" + strRow);
-
+        String currentText = tvNotificationList.getText().toString();
+        this.tvNotificationList.setText(currentText + "\n\n" + strRow);
     }
 
     private void setNotificationListText(String str) {
@@ -82,17 +70,6 @@ public class Notifications extends AppCompatActivity {
                                     String notificationTime = jsonObj.get("PostTime").toString();
                                     String notificationAMPM = jsonObj.get("PostTimeAMPM").toString();
                                     addToNotificationList(notificationID, notificationTitle, notificationDescription, notificationDate, notificationTime, notificationAMPM);
-
-                                    //new code
-                                    NotificationObjects n = new NotificationObjects();
-                                    n.ID = jsonObj.get("ID").toString();
-                                    n.Title = jsonObj.get("Title").toString();
-                                    n.Description = jsonObj.get("Description").toString();
-                                    n.Date = jsonObj.get("PostDate").toString();
-                                    n.Time = jsonObj.get("PostTime").toString();
-                                    n.AMPM = jsonObj.get("PostTimeAMPM").toString();
-                                    NList.add(n);
-
                                 } catch (JSONException e) {
                                     // If there is an error then output this to the logs.
                                     Log.e("Volley", "Invalid JSON Object.");
