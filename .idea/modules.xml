@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidApp.iml" filepath="$PROJECT_DIR$/AndroidApp.iml" />
-      <module fileurl="file://C:\Users\tonib\OneDrive\Documents\CS448\SeniorProject\AndroidApp\AndroidApp.iml" filepath="C:\Users\tonib\OneDrive\Documents\CS448\SeniorProject\AndroidApp\AndroidApp.iml" />
       <module fileurl="file://C:\Users\tonib\OneDrive\Documents\CS448\SeniorProject\AndroidApp\LCPDandU.iml" filepath="C:\Users\tonib\OneDrive\Documents\CS448\SeniorProject\AndroidApp\LCPDandU.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

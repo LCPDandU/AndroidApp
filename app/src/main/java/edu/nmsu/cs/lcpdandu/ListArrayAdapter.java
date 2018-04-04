@@ -46,7 +46,7 @@ public class ListArrayAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get view for row item
         View rowView = mInflater.inflate(R.layout.activity_notifications_list, parent, false);
-        //TextView IDTextView = (TextView) rowView.findViewById(R.id.notifications_list_id);
+        TextView IDTextView = (TextView) rowView.findViewById(R.id.notifications_list_id);
         TextView TitleTextView = (TextView) rowView.findViewById(R.id.notifications_list_title);
         TextView DescriptionTextView = (TextView) rowView.findViewById(R.id.notifications_list_description);
         TextView DateTextView = (TextView) rowView.findViewById(R.id.notifications_list_date);
@@ -55,7 +55,7 @@ public class ListArrayAdapter extends BaseAdapter {
 
 
         NotificationObjects n = (NotificationObjects) getItem(position);
-        //IDTextView.setText(n.ID);
+        IDTextView.setText(n.ID);
         TitleTextView.setText(n.Title);
         DescriptionTextView.setText(n.Description);
         DateTextView.setText(n.Date);
