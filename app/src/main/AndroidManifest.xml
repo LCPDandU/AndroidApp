@@ -32,25 +32,21 @@
         <activity android:name=".DayList" />
         <activity android:name=".Notifications" />
         <activity android:name=".ContactUs" />
-        <activity
-            android:name=".Token"
-            android:exported="true" >
-        </activity>
 
         <activity android:name=".Git" />
 
 
-        <service android:name=".MyFirebaseInstanceIDService">
+        <service
+            android:name=".fcm.MyFirebaseInstanceIDService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>
         </service>
 
         <service
-            android:name=".MyFirebaseMessagingService">
+            android:name=".fcm.MyFirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>
         </service>
 

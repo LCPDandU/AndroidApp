@@ -1,31 +1,27 @@
 {
   "project_info": {
-    "project_number": "44839034557",
-    "firebase_url": "https://fir-lcpdandu.firebaseio.com",
-    "project_id": "firebase-lcpdandu",
-    "storage_bucket": "firebase-lcpdandu.appspot.com"
+    "project_number": "759540900985",
+    "firebase_url": "https://lcpdandu-88e74.firebaseio.com",
+    "project_id": "lcpdandu-88e74",
+    "storage_bucket": "lcpdandu-88e74.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:44839034557:android:3ea3470f2c41913a",
+        "mobilesdk_app_id": "1:759540900985:android:3ea3470f2c41913a",
         "android_client_info": {
           "package_name": "edu.nmsu.cs.lcpdandu"
         }
       },
       "oauth_client": [
         {
-          "client_id": "44839034557-v5uta893am79m9c8lrh4ctqdev9d18eg.apps.googleusercontent.com",
-          "client_type": 3
-        },
-        {
-          "client_id": "44839034557-lac9oio01g8q1ejfd689500jj4495peh.apps.googleusercontent.com",
+          "client_id": "759540900985-75amh8kltdrugdudbg24oj5o404topt1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD1KZS50NiY4y1Cc-LgaBc-v8JoOfBl5-4"
+          "current_key": "AIzaSyBixZVpXulFamEC7ISF20g1t09wXaOdOIA"
         }
       ],
       "services": {
