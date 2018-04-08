@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.messaging.FirebaseMessaging;
+
 public class HomePage extends AppCompatActivity {
 
     private TextView mTextMessage;
@@ -47,6 +49,9 @@ public class HomePage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        FirebaseMessaging.getInstance().subscribeToTopic("news");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
