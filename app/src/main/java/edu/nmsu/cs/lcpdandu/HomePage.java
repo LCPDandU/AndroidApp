@@ -7,16 +7,33 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.EventLog;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.firebase.messaging.FirebaseMessaging;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class HomePage extends AppCompatActivity {
 
     private TextView mTextMessage;
+    RequestQueue requestQueue;
+    String url = "http://tm4sp18.cs.nmsu.edu:8000/public/api/events";   // This is the API base URL (GitHub API)
 
+    public static ArrayList<EventObjects> Elist = new ArrayList<>();
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -24,7 +41,7 @@ public class HomePage extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_events:
-                    Intent eventsIntent = new Intent(HomePage.this, Calendar.class);
+                    Intent eventsIntent = new Intent(HomePage.this, CompactCalendar.class);
                     startActivity(eventsIntent);
                     return true;
                 case R.id.navigation_contact:
@@ -49,15 +66,97 @@ public class HomePage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        FirebaseMessaging.getInstance().subscribeToTopic("news");
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+        requestQueue = Volley.newRequestQueue(this);  // This setups up a new request queue which we will need to make HTTP requests.
+        getEventList();
 
+        // Intent.putExtra("Contact_list", ContactLis);
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        if(Elist.size() == 0){
+            System.out.println("blankssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
+        }
+        printer();
+    }
+
+    private void getEventList() {
+
+        // Creates a new JsonArrayRequest.
+        // Uses Volley to make a HTTP request that expects a JSON Array Response.
+        JsonArrayRequest arrReq = new JsonArrayRequest(Request.Method.GET, url,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        // Check the length of our response (to see if the user has any notifications)
+                        if (response.length() > 0) {
+                            // The user does have notifications, so let's loop through them all.
+                            for (int i = 0; i < response.length(); i++) {
+                                try {
+
+
+                                    // For each notification, add a new line to our notification list.
+                                    JSONObject jsonObj = response.getJSONObject(i);
+                                    String eventID = jsonObj.get("ID").toString();
+                                    System.out.println("ID " + eventID);
+                                    String eventTitle = jsonObj.get("Title").toString();
+                                    System.out.println("Title " + eventTitle);
+                                    String eventCategory = jsonObj.get("Category").toString();
+                                    String eventDate = jsonObj.get("EventDate").toString();
+                                    String eventStartTime = jsonObj.get("EventStartTime").toString();
+                                    String eventStartTimeAMPM = jsonObj.get("EventStartTimeAMPM").toString();
+                                    String eventLocation = jsonObj.get("Location").toString();
+                                    String eventDescription = jsonObj.get("Description").toString();
+
+                                    EventObjects e = new EventObjects();
+                                    e.ID = eventID;
+                                    e.Title = eventTitle;
+                                    e.Category = eventCategory;
+                                    e.Date = eventDate;
+                                    e.Time = eventStartTime;
+                                    e.AMPM = eventStartTimeAMPM;
+                                    e.Location = eventLocation;
+                                    e.Description = eventDescription;
+                                    HomePage.Elist.add(e);
+
+                                } catch (JSONException e) {
+                                    // If there is an error then output this to the logs.
+                                    System.out.println("JSON ERROR");
+                                    Log.e("Volley", "Invalid JSON Object.");
+                                }
+
+                            }
+                        } else {
+                            System.out.println("NO EVENTS");
+                            // The user didn't have any notifications.
+                            //setNotificationListText("No notifications found.");
+                        }
+
+                    }
+                },
+
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // If there a HTTP error then add a note to our notification list.
+                        // setNotificationListText("Error while calling REST API");
+                        System.out.println("VOLLEY HAS SOME ERRORS");
+                        Log.e("Volley", error.toString());
+                    }
+                }
+        );
+        // Add the request we just defined to our request queue.
+        // The request queue will automatically handle the request as soon as it can.
+        requestQueue.add(arrReq);
+    }
+    public void printer() {
+        System.out.println("ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
+        for (EventObjects e : Elist) {
+            System.out.println(e.Date);
+            System.out.println("nothing?");
+        }
     }
 
 }
+

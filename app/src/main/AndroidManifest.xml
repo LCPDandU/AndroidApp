@@ -28,7 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Calendar" />
+        <activity android:name=".CompactCalendar" />
         <activity android:name=".DayList" />
         <activity android:name=".Notifications" />
         <activity android:name=".ContactUs" />
