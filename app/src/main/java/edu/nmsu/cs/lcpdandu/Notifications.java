@@ -22,13 +22,13 @@ import java.util.ArrayList;
 
 public class Notifications extends AppCompatActivity {
 
-    TextView tvNotificationList;  // This will reference our notification list text box.
+    private TextView tvNotificationList;  // This will reference our notification list text box.
 
-    final ArrayList<NotificationObjects> NList = new ArrayList<>();
-    private ListView NListView;
-    RequestQueue requestQueue;  // This is our requests queue to process our HTTP requests.
-
-    String url = "http://tm4sp18.cs.nmsu.edu:8000/public/api/notifications";  // This is the API base URL (GitHub API)
+    private ArrayList<NotificationObjects> NList = new ArrayList<>(); // Place to store all notification objects
+    private ListView NListView; // Provides a list view to store objects inside.
+    private RequestQueue requestQueue;  // This is our requests queue to process our HTTP requests.
+    private ListArrayAdapter adapter; // Adapter to store textviews inside of listview with NotificationsObjects.
+    private String url = "http://tm4sp18.cs.nmsu.edu:8000/public/api/notifications";  // This is the API base URL (GitHub API)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class Notifications extends AppCompatActivity {
         getNotificationList();
 
         NListView = (ListView) findViewById(R.id.notifications_list_view);
-        ListArrayAdapter adapter = new ListArrayAdapter(this, NList);
+        adapter = new ListArrayAdapter(this, NList);
         NListView.setAdapter(adapter);
 
     }
@@ -83,16 +83,9 @@ public class Notifications extends AppCompatActivity {
                                     String notificationAMPM = jsonObj.get("PostTimeAMPM").toString();
                                     addToNotificationList(notificationID, notificationTitle, notificationDescription, notificationDate, notificationTime, notificationAMPM);
 
-                                    //new code
-                                    NotificationObjects n = new NotificationObjects();
-                                    n.ID = jsonObj.get("ID").toString();
-                                    n.Title = jsonObj.get("Title").toString();
-                                    n.Description = jsonObj.get("Description").toString();
-                                    n.Date = jsonObj.get("PostDate").toString();
-                                    n.Time = jsonObj.get("PostTime").toString();
-                                    n.AMPM = jsonObj.get("PostTimeAMPM").toString();
+                                    NotificationObjects n = new NotificationObjects(notificationID, notificationTitle, notificationDescription, notificationTime, notificationAMPM);
                                     NList.add(n);
-
+                                    adapter.add(n);
                                 } catch (JSONException e) {
                                     // If there is an error then output this to the logs.
                                     Log.e("Volley", "Invalid JSON Object.");
@@ -111,7 +104,7 @@ public class Notifications extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // If there a HTTP error then add a note to our notification list.
-                        setNotificationListText("Error while calling REST API");
+                        //setNotificationListText("Error while calling REST API");
                         Log.e("Volley", error.toString());
                     }
                 }

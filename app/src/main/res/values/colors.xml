@@ -5,4 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="light_grey">#cccccc</color>
     <color name="darkskyblue">#E0FBFC</color>
+    <color name="text_shadow">#7F000000</color>
+    <color name="text_shadow_white">#FFFFFF</color>
+    <color name="mustard_yellow">#F2CD5D</color>
 </resources>
