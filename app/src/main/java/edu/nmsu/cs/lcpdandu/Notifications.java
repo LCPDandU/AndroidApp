@@ -22,8 +22,8 @@ import java.util.ArrayList;
 
 public class Notifications extends AppCompatActivity {
 
-    private TextView tvNotificationList;  // This will reference our notification list text box.
 
+    private TextView tvNotificationList;  // This will reference our notification list text box.
     private ArrayList<NotificationObjects> NList = new ArrayList<>(); // Place to store all notification objects
     private ListView NListView; // Provides a list view to store objects inside.
     private RequestQueue requestQueue;  // This is our requests queue to process our HTTP requests.
@@ -38,21 +38,18 @@ public class Notifications extends AppCompatActivity {
         //this.tvNotificationList = (TextView) findViewById(R.id.tv_notification_list);  // Link our notificationsitory list text output box.
         //this.tvNotificationList.setMovementMethod(new ScrollingMovementMethod());  // This makes our text box scrollable, for those big GitHub contributors with lots of notifications :)
 
-
         requestQueue = Volley.newRequestQueue(this);  // This setups up a new request queue which we will need to make HTTP requests.
         getNotificationList();
 
         NListView = (ListView) findViewById(R.id.notifications_list_view);
         adapter = new ListArrayAdapter(this, NList);
         NListView.setAdapter(adapter);
-
     }
 
     private void addToNotificationList(String notificationID, String notificationTitle, String notificationDescription, String notificationDate, String notificationTime, String notificationAMPM) {
         String strRow = notificationID + "\n" + notificationTitle + "\n" + notificationDescription + "\n" + notificationDate + "\n" + notificationTime + " " + notificationAMPM;
-        //String currentText = tvNotificationList.getText().toString();
-        //this.tvNotificationList.setText(currentText + "\n\n" + strRow);
-
+        String currentText = tvNotificationList.getText().toString();
+        this.tvNotificationList.setText(currentText + "\n\n" + strRow);
     }
 
     private void setNotificationListText(String str) {
@@ -86,6 +83,7 @@ public class Notifications extends AppCompatActivity {
                                     NotificationObjects n = new NotificationObjects(notificationID, notificationTitle, notificationDescription, notificationTime, notificationAMPM);
                                     NList.add(n);
                                     adapter.add(n);
+
                                 } catch (JSONException e) {
                                     // If there is an error then output this to the logs.
                                     Log.e("Volley", "Invalid JSON Object.");

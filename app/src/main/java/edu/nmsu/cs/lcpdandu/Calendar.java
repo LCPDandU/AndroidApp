@@ -12,13 +12,13 @@ public class Calendar extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calendar);
-        DisplayCalendar();
+        //setContentView(R.layout.activity_calendar);
+        //DisplayCalendar();
     }
 
     public void DisplayCalendar(){
-        calendar = (CalendarView)findViewById(R.id.calendarView);
-        calendar.setShowWeekNumber(false);
+        //calendar = (CalendarView)findViewById(R.id.calendarView);
+       // calendar.setShowWeekNumber(false);
     }
 
 
