@@ -48,8 +48,8 @@ public class Notifications extends AppCompatActivity {
 
     private void addToNotificationList(String notificationID, String notificationTitle, String notificationDescription, String notificationDate, String notificationTime, String notificationAMPM) {
         String strRow = notificationID + "\n" + notificationTitle + "\n" + notificationDescription + "\n" + notificationDate + "\n" + notificationTime + " " + notificationAMPM;
-        String currentText = tvNotificationList.getText().toString();
-        this.tvNotificationList.setText(currentText + "\n\n" + strRow);
+        //String currentText = tvNotificationList.getText().toString();
+        //this.tvNotificationList.setText(currentText + "\n\n" + strRow);
     }
 
     private void setNotificationListText(String str) {
