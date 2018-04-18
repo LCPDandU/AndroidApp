@@ -26,17 +26,18 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class HomePage extends AppCompatActivity {
 
     private TextView mTextMessage;
     RequestQueue requestQueue;
     String url = "http://tm4sp18.cs.nmsu.edu:8000/public/api/events";   // This is the API base URL (GitHub API)
-
     public static ArrayList<EventObjects> Elist = new ArrayList<>();
+
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
@@ -66,19 +67,15 @@ public class HomePage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        FirebaseMessaging.getInstance().subscribeToTopic("news");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         requestQueue = Volley.newRequestQueue(this);  // This setups up a new request queue which we will need to make HTTP requests.
         getEventList();
-
-        // Intent.putExtra("Contact_list", ContactLis);
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        if(Elist.size() == 0){
-            System.out.println("blankssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
-        }
-        printer();
+
     }
 
     private void getEventList() {
@@ -99,9 +96,7 @@ public class HomePage extends AppCompatActivity {
                                     // For each notification, add a new line to our notification list.
                                     JSONObject jsonObj = response.getJSONObject(i);
                                     String eventID = jsonObj.get("ID").toString();
-                                    System.out.println("ID " + eventID);
                                     String eventTitle = jsonObj.get("Title").toString();
-                                    System.out.println("Title " + eventTitle);
                                     String eventCategory = jsonObj.get("Category").toString();
                                     String eventDate = jsonObj.get("EventDate").toString();
                                     String eventStartTime = jsonObj.get("EventStartTime").toString();
@@ -140,8 +135,7 @@ public class HomePage extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // If there a HTTP error then add a note to our notification list.
-                        // setNotificationListText("Error while calling REST API");
-                        System.out.println("VOLLEY HAS SOME ERRORS");
+                        // setNotificationListText("Error while calling REST API");;
                         Log.e("Volley", error.toString());
                     }
                 }
@@ -150,13 +144,7 @@ public class HomePage extends AppCompatActivity {
         // The request queue will automatically handle the request as soon as it can.
         requestQueue.add(arrReq);
     }
-    public void printer() {
-        System.out.println("ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
-        for (EventObjects e : Elist) {
-            System.out.println(e.Date);
-            System.out.println("nothing?");
-        }
-    }
+
 
 }
 
