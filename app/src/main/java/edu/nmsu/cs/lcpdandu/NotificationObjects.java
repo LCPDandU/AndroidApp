@@ -13,11 +13,11 @@ public class NotificationObjects {
     public String Time;
     public String AMPM;
 
-    public NotificationObjects(){
-        String ID = this.ID;
-        String Title = this.Title;
-        String Description = this.Description;
-        String Time = this.Time;
-        String AMPM = this.AMPM;
+    public NotificationObjects(String ID, String Title, String Description, String Time, String AMPM){
+        this.ID = ID;
+        this.Title = Title;
+        this.Description = Description;
+        this.Time = Time;
+        this.AMPM = AMPM;
     }
 }
