@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.EventLog;
 import android.util.Log;
@@ -26,6 +27,9 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import com.google.firebase.messaging.FirebaseMessaging;
 
 public class HomePage extends AppCompatActivity {
@@ -34,6 +38,8 @@ public class HomePage extends AppCompatActivity {
     RequestQueue requestQueue;
     String url = "http://tm4sp18.cs.nmsu.edu:8000/public/api/events";   // This is the API base URL (GitHub API)
     private static ArrayList<EventObjects> Elist = new ArrayList<>();
+    private ViewPager viewPager;
+    private ViewPagerAdapter v;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -73,8 +79,18 @@ public class HomePage extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);  // This setups up a new request queue which we will need to make HTTP requests.
         getEventList();
         mTextMessage = (TextView) findViewById(R.id.message);
+
+        v = new ViewPagerAdapter(this);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager.setAdapter(v);
+
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new SlideTimer(), 4000, 4000);
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+
 
     }
 
@@ -147,6 +163,25 @@ public class HomePage extends AppCompatActivity {
 
     public static ArrayList<EventObjects> getElist() {
         return Elist;
+    }
+
+    public class SlideTimer extends TimerTask {
+
+        @Override
+        public void run(){
+            HomePage.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if(viewPager.getCurrentItem()==0){
+                        viewPager.setCurrentItem(1);
+                    }else if(viewPager.getCurrentItem()==1){
+                        viewPager.setCurrentItem(2);
+                    }else{
+                        viewPager.setCurrentItem(0);
+                    }
+                }
+            });
+        }
     }
 }
 

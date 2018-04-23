@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/annie_spratt_441579_unsplash" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="120dp"
+        android:layout_marginTop="280dp"
+        android:textSize="25dp"
+        android:textColor="@color/text_color"
+        android:textStyle="bold"
+        tools:text="@string/slide_text_1"/>
+
+</RelativeLayout>

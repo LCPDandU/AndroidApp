@@ -8,4 +8,6 @@
     <color name="text_shadow">#7F000000</color>
     <color name="text_shadow_white">#FFFFFF</color>
     <color name="mustard_yellow">#F2CD5D</color>
+    <color name="background_color">#000000</color>
+    <color name="text_color">#ffffff</color>
 </resources>

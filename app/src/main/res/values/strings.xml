@@ -13,4 +13,7 @@
     <string name="contact_text1">Need to contact us? Visit the City of Las Cruces website to get more information!</string>
     <string name="contact_website_button">CITY OF LAS CRUCES</string>
     <string name="contact_social_media">Contact us on Facebook and Twitter or give us a call!</string>
+    <string name="slide_text_1">Stay involved in the Las Cruces Community by checking out local events.</string>
+    <string name="slide_text_2">Get notified of upcoming events, alerts, and reported crimes.</string>
+    <string name="slide_text_3">Want to add an event? Give LCPD a call by visiting our Contact Us tab.</string>
 </resources>
