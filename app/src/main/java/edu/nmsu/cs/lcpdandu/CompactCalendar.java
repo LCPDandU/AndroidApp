@@ -1,5 +1,7 @@
 package edu.nmsu.cs.lcpdandu;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -16,16 +18,15 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 import android.widget.Toast;
 import android.content.Context;
-import java.util.concurrent.TimeUnit;
+
 
 
 public class CompactCalendar extends AppCompatActivity {
-    // TextView tvNotificationList;
-
     private Calendar currentCalender = Calendar.getInstance(Locale.getDefault());
-    static ArrayList<EventObjects> events = HomePage.Elist;
     CompactCalendarView compactCalendar;
     private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM- yyyy", Locale.getDefault());
+    private static ArrayList<Event> eventList = new ArrayList<Event>();
+    private static ArrayList<EventObjects> eventToSend = new ArrayList<EventObjects>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,16 +40,16 @@ public class CompactCalendar extends AppCompatActivity {
         compactCalendar = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
         compactCalendar.setFirstDayOfWeek(Calendar.SUNDAY);
         compactCalendar.setUseThreeLetterAbbreviation(true);
-        Date eventday = new Date();
+        Date eventDay = new Date();
         Calendar calendar = new GregorianCalendar();
-        actionBar.setTitle(dateFormatMonth.format(eventday));
+        actionBar.setTitle(dateFormatMonth.format(eventDay));
 
-        final ArrayList<Event> eventlist = new ArrayList<Event>();
 
-        for (EventObjects e : HomePage.Elist) {
+
+        for (EventObjects e : HomePage.getElist()) {
             //Converting the day from the object format of yyyy-MM-dd to a date
-            eventday = convertDate(e.Date);
-            calendar.setTime(eventday);
+            eventDay = convertDate(e.Date);
+            calendar.setTime(eventDay);
 
             //Getting the day month and year
             int day = calendar.get(Calendar.DATE);
@@ -67,7 +68,7 @@ public class CompactCalendar extends AppCompatActivity {
 
             //Create and add event with the title
             Event ev1 = new Event(Color.RED, timeInMillis, e.Title);
-            eventlist.add(ev1);
+            eventList.add(ev1);
             compactCalendar.addEvent(ev1);
         }
 
@@ -95,16 +96,23 @@ public class CompactCalendar extends AppCompatActivity {
                 int setVariable = 0;
                 String title = "";
                 //Check if the eventday is the same as the day clicked. If it is then setVariable is 1
-                for(Event e: eventlist) {
-                    Date d = new Date(e.getTimeInMillis());
+                for(int i = 0; i < eventList.size(); i++){
+                    Date d = new Date(eventList.get(i).getTimeInMillis());
                     if ((dateClicked.compareTo(d)) == 0) {
                         setVariable = 1;
-                        title = e.getData().toString();
+                        title = eventList.get(i).getData().toString();
+                        if(i <= HomePage.getElist().size()) {
+                            eventToSend.add(HomePage.getElist().get(i));
+                        }
+                        else{
+                            eventList.clear();
+                        }
                     }
                 }//End For
                 //If setVariable is 1 then show the title of the event
                 if(setVariable == 1){
                     Toast.makeText(context, title, Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(CompactCalendar.this, DayList.class));
                 }
                 //Else There is no events
                 else{
@@ -119,6 +127,14 @@ public class CompactCalendar extends AppCompatActivity {
             }
         });
 
+    }
+    //TODO: Switch the button from website to list format
+    public void clickViewList(View v) {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(Uri.parse("http://www.las-cruces.org/departments/police-department"));
+        startActivity(intent);
     }
 
     private static Date convertDate(String eventDate){
@@ -141,7 +157,12 @@ public class CompactCalendar extends AppCompatActivity {
         calendar.set(Calendar.MILLISECOND, 0);
     }
 
-
+    public static ArrayList<Event> getEventList() {
+        return eventList;
+    }
+    public static ArrayList<EventObjects> getEventToSend() {
+        return eventToSend;
+    }
 }
 
 

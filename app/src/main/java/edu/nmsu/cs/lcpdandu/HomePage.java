@@ -33,7 +33,7 @@ public class HomePage extends AppCompatActivity {
     private TextView mTextMessage;
     RequestQueue requestQueue;
     String url = "http://tm4sp18.cs.nmsu.edu:8000/public/api/events";   // This is the API base URL (GitHub API)
-    public static ArrayList<EventObjects> Elist = new ArrayList<>();
+    private static ArrayList<EventObjects> Elist = new ArrayList<>();
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -145,6 +145,8 @@ public class HomePage extends AppCompatActivity {
         requestQueue.add(arrReq);
     }
 
-
+    public static ArrayList<EventObjects> getElist() {
+        return Elist;
+    }
 }
 

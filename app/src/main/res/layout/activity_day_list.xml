@@ -1,24 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.nmsu.cs.lcpdandu.DayList">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/ic_action_name"
-        android:backgroundTint="@color/colorPrimaryDark"
-        android:onClick="clickHome"
-        android:text="Home"
-        android:textAlignment="center"
-        android:textColor="@android:color/background_light"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:orientation="vertical"
+        android:background="@drawable/border"
+        android:layout_marginBottom="15dp">
 
-</android.support.constraint.ConstraintLayout>
+        <TextView android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/events_list_title"
+            tools:text="Title"
+            android:textSize="18sp"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            android:textStyle="bold"/>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/events_list_date"
+                tools:text="Date"
+                android:textSize="14sp"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"/>
+
+            <TextView android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/events_list_time"
+                tools:text="Time"
+                android:textSize="14sp"/>
+
+            <TextView android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/events_list_ampm"
+                tools:text="AMPM"
+                android:textSize="14sp"
+                android:ellipsize="end"/>
+        </LinearLayout>
+
+        <TextView android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="10dp"
+            android:id="@+id/events_list_location"
+            tools:text="Location"
+            android:textSize="16sp"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            android:ellipsize="end"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:text="Click Here for more details"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@color/colorPrimaryDark"
+            android:onClick="clickEventDetails"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_light"
+            android:textSize="14sp"
+            android:ellipsize="end"/>
+
+
+
+    </LinearLayout>
+</LinearLayout>
