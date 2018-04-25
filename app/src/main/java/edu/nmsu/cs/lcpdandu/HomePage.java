@@ -1,6 +1,5 @@
 package edu.nmsu.cs.lcpdandu;
 
-import android.app.Notification;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,10 +7,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.EventLog;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -25,7 +22,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -35,13 +31,14 @@ import com.google.firebase.messaging.FirebaseMessaging;
 public class HomePage extends AppCompatActivity {
 
     private TextView mTextMessage;
-    RequestQueue requestQueue;
-    String url = "http://tm4sp18.cs.nmsu.edu:8000/public/api/events";   // This is the API base URL (GitHub API)
-    private static ArrayList<EventObjects> Elist = new ArrayList<>();
-    private ViewPager viewPager;
-    private ViewPagerAdapter v;
+    private static ArrayList<EventObjects> EventObjectList = new ArrayList<>();
+    private RequestQueue requestQueue;// This is our requests queue to process our HTTP requests.
+    private String url = "http://tm4sp18.cs.nmsu.edu:8000/public/api/events";   // This is the API base URL (GitHub API)
+    private ViewPager viewPager;//Slider View
+    private ViewPagerAdapter v;//Will place the xml layout in activity_main_slider within the xml of activity_home_page
 
-
+    //Bottom Navigation Bar contains five tabs that will lead to its intended pages: HomePage,
+    //CompactCalendar, ContactUs, Notifications, and AskTheCity.
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -73,26 +70,38 @@ public class HomePage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //FirebaseMessaging allows the app to send new notifications to users
+        //phones without being within the app
         FirebaseMessaging.getInstance().subscribeToTopic("news");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        requestQueue = Volley.newRequestQueue(this);  // This setups up a new request queue which we will need to make HTTP requests.
-        getEventList();
+
+        //Check if the EventObjectList has already been filled. If not then call requestQueue and getEventList
+        if(EventObjectList.size()  == 0) {
+            requestQueue = Volley.newRequestQueue(this);  // This setups up a new request queue which we will need to make HTTP requests.
+            getEventList();
+        }
+
         mTextMessage = (TextView) findViewById(R.id.message);
 
+        //Takes the activity_main_slider xml and stores this inside of
+        //activity_home_page's viewpager.
         v = new ViewPagerAdapter(this);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.setAdapter(v);
 
+        //Set time interval for when next slide should appear on screen.
+        //Initial delay is 4 seconds on first slide and 4 seconds onward
+        //to following slides.
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new SlideTimer(), 4000, 4000);
 
+        //Set BottomNavigation View
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-
-
     }
+
 
     private void getEventList() {
 
@@ -102,14 +111,12 @@ public class HomePage extends AppCompatActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        // Check the length of our response (to see if the user has any notifications)
+                        // Check the length of our response (to see if the user has any events)
                         if (response.length() > 0) {
-                            // The user does have notifications, so let's loop through them all.
+                            // The user does have events, so let's loop through them all.
                             for (int i = 0; i < response.length(); i++) {
                                 try {
-
-
-                                    // For each notification, add a new line to our notification list.
+                                    // For each event, add a new line to our event list.
                                     JSONObject jsonObj = response.getJSONObject(i);
                                     String eventID = jsonObj.get("ID").toString();
                                     String eventTitle = jsonObj.get("Title").toString();
@@ -129,7 +136,7 @@ public class HomePage extends AppCompatActivity {
                                     e.AMPM = eventStartTimeAMPM;
                                     e.Location = eventLocation;
                                     e.Description = eventDescription;
-                                    HomePage.Elist.add(e);
+                                    EventObjectList.add(e);
 
                                 } catch (JSONException e) {
                                     // If there is an error then output this to the logs.
@@ -138,10 +145,6 @@ public class HomePage extends AppCompatActivity {
                                 }
 
                             }
-                        } else {
-                            System.out.println("NO EVENTS");
-                            // The user didn't have any notifications.
-                            //setNotificationListText("No notifications found.");
                         }
 
                     }
@@ -150,8 +153,7 @@ public class HomePage extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // If there a HTTP error then add a note to our notification list.
-                        // setNotificationListText("Error while calling REST API");;
+                        // If there a HTTP error then log the error
                         Log.e("Volley", error.toString());
                     }
                 }
@@ -161,10 +163,13 @@ public class HomePage extends AppCompatActivity {
         requestQueue.add(arrReq);
     }
 
-    public static ArrayList<EventObjects> getElist() {
-        return Elist;
+    public static ArrayList<EventObjects> getEventObjectList() {
+        return EventObjectList;
     }
 
+    //Sets timer on viewPager and slider. If viewPager is on
+    //first slide then move to second slide and then to the third.
+    //When method is called set the time for period and delay.
     public class SlideTimer extends TimerTask {
 
         @Override

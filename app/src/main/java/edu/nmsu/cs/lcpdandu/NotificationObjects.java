@@ -1,9 +1,7 @@
 package edu.nmsu.cs.lcpdandu;
 
-/**
- * Created by tonib on 3/26/2018.
- */
-
+//Each notification will have properties ID, Title, Description, Date, Time, and AMPM.
+//They will be created as objects with their following attributes.
 public class NotificationObjects {
 
     public String ID;

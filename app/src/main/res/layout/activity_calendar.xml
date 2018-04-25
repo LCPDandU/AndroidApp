@@ -33,14 +33,14 @@ android:id="@+id/main_content"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"/>
 
-    <Button
+    <!--<Button
         android:id="@+id/view_as_list"
         android:layout_width="151dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/compactcalendar_view"
         android:layout_centerHorizontal="true"
         android:onClick="clickViewList"
-        android:text="View Calendar as List" />
+        android:text="View Calendar as List" />-->
 
 
 <Button

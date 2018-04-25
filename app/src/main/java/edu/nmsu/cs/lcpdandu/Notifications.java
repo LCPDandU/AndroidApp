@@ -18,7 +18,11 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Notifications extends AppCompatActivity {
 
@@ -29,6 +33,7 @@ public class Notifications extends AppCompatActivity {
     private RequestQueue requestQueue;  // This is our requests queue to process our HTTP requests.
     private ListArrayAdapter adapter; // Adapter to store textviews inside of listview with NotificationsObjects.
     private String url = "http://tm4sp18.cs.nmsu.edu:8000/public/api/notifications/order/PostDate/sort/desc";  // This is the API base URL (GitHub API)
+    private Date day = new Date(); //Today's date
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +45,16 @@ public class Notifications extends AppCompatActivity {
 
         requestQueue = Volley.newRequestQueue(this);  // This setups up a new request queue which we will need to make HTTP requests.
         getNotificationList();
-
         NListView = (ListView) findViewById(R.id.notifications_list_view);
         adapter = new ListArrayAdapter(this, NList);
         NListView.setAdapter(adapter);
+
+        //Create calendar to manipulate day
+        Calendar c = Calendar.getInstance();
+        c.setTime(day);
+        //Subtract how many days wanted for the cutoff of notifications
+        c.add(Calendar.DATE, -3);
+        day = c.getTime();
     }
 
     private void addToNotificationList(String notificationID, String notificationTitle, String notificationDescription, String notificationDate, String notificationTime, String notificationAMPM) {
@@ -81,8 +92,14 @@ public class Notifications extends AppCompatActivity {
                                     addToNotificationList(notificationID, notificationTitle, notificationDescription, notificationDate, notificationTime, notificationAMPM);
 
                                     NotificationObjects n = new NotificationObjects(notificationID, notificationTitle, notificationDescription, notificationDate, notificationTime, notificationAMPM);
-                                    NList.add(n);
-                                    adapter.add(n);
+                                    //Convert the date pulled from the database
+                                    Date convertedDate = convertDate(notificationDate);
+
+                                    //If the date set is before the date from the database then add it to the adapter and Nlist
+                                    if(day.before(convertedDate)) {
+                                        adapter.add(n);
+                                        NList.add(n);
+                                    }
 
                                 } catch (JSONException e) {
                                     // If there is an error then output this to the logs.
@@ -112,4 +129,16 @@ public class Notifications extends AppCompatActivity {
         requestQueue.add(arrReq);
     }
 
+    private static Date convertDate(String eventDate){
+        //Setting the date format
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date convertedDate = new Date();
+        //Try to format passed date with the dateformat
+        try{
+            convertedDate = dateFormat.parse(eventDate);
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+        return convertedDate;
+    }
 }
