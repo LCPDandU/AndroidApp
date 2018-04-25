@@ -31,13 +31,10 @@ import com.google.firebase.messaging.FirebaseMessaging;
 public class HomePage extends AppCompatActivity {
 
     private TextView mTextMessage;
-<<<<<<< HEAD
     private static ArrayList<EventObjects> EventObjectList = new ArrayList<>();
     private RequestQueue requestQueue;// This is our requests queue to process our HTTP requests.
     private String url = "http://tm4sp18.cs.nmsu.edu:8000/public/api/events";   // This is the API base URL (GitHub API)
-=======
 
->>>>>>> e718413eeaa72fa822267e52b9e4e477bed4ae26
     private ViewPager viewPager;//Slider View
     private ViewPagerAdapter v;//Will place the xml layout in activity_main_slider within the xml of activity_home_page
 
@@ -85,16 +82,13 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-<<<<<<< HEAD
+
         //Check if the EventObjectList has already been filled. If not then call requestQueue and getEventList
         if(EventObjectList.size()  == 0) {
             requestQueue = Volley.newRequestQueue(this);  // This setups up a new request queue which we will need to make HTTP requests.
             getEventList();
         }
 
-=======
-
->>>>>>> e718413eeaa72fa822267e52b9e4e477bed4ae26
         mTextMessage = (TextView) findViewById(R.id.message);
 
         //Takes the activity_main_slider xml and stores this inside of
