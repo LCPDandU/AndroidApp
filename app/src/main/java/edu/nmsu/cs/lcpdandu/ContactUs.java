@@ -8,8 +8,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 public class ContactUs extends AppCompatActivity {
 
@@ -19,10 +17,8 @@ public class ContactUs extends AppCompatActivity {
         setContentView(R.layout.activity_contact_us);
     }
 
-    public void clickHome(View v) {
-        startActivity(new Intent(ContactUs.this, HomePage.class));
-    }
-
+    //Moves from the app to browser. Browser destination is set to the
+    //Las Cruces Police Department.
     public void clickPoliceWebsite(View v) {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
@@ -31,6 +27,8 @@ public class ContactUs extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //Moves from the app to browser. Browser destination is set to the
+    //Las Cruces Police Department's Facebook.
     public void clickPoliceFacebook(View v) {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
@@ -39,6 +37,8 @@ public class ContactUs extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //Moves from the app to browser. Browser destination is set to the
+    //Las Cruces Police Department's Twitter.
     public void clickPoliceTwitter(View v) {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
@@ -47,6 +47,8 @@ public class ContactUs extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //Moves from app to phone app. Number is set to dial Las Cruces
+    //Police Department.
     public void callPhone(View V) {
         Intent callIntent = new Intent(Intent.ACTION_CALL);
         callIntent.setData(Uri.parse("tel:5756400344"));
