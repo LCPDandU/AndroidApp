@@ -32,7 +32,7 @@ public class Notifications extends AppCompatActivity {
     private ListView NListView; // Provides a list view to store objects inside.
     private RequestQueue requestQueue;  // This is our requests queue to process our HTTP requests.
     private ListArrayAdapter adapter; // Adapter to store textviews inside of listview with NotificationsObjects.
-    private String url = "http://tm4sp18.cs.nmsu.edu:8000/public/api/notifications/order/PostDate/sort/desc";  // This is the API base URL (GitHub API)
+    private String url = "http://tm4sp18.cs.nmsu.edu/public/api/notifications/order/PostDate/sort/desc";  // This is the API base URL (GitHub API)
     private Date day = new Date(); //Today's date
 
     @Override

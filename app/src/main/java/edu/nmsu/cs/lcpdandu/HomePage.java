@@ -33,7 +33,7 @@ public class HomePage extends AppCompatActivity {
     private TextView mTextMessage;
     private static ArrayList<EventObjects> EventObjectList = new ArrayList<>();
     private RequestQueue requestQueue;// This is our requests queue to process our HTTP requests.
-    private String url = "http://tm4sp18.cs.nmsu.edu:8000/public/api/events";   // This is the API base URL (GitHub API)
+    private String url = "http://tm4sp18.cs.nmsu.edu/public/api/events";   // This is the API base URL (GitHub API)
 
     private ViewPager viewPager;//Slider View
     private ViewPagerAdapter v;//Will place the xml layout in activity_main_slider within the xml of activity_home_page
