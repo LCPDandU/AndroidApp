@@ -8,6 +8,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -48,6 +49,7 @@ public class HomePage extends AppCompatActivity {
                 case R.id.navigation_home:
                     Intent homeIntent = new Intent(HomePage.this, HomePage.class);
                     startActivity(homeIntent);
+
                     return true;
                 case R.id.navigation_events:
                     Intent eventsIntent = new Intent(HomePage.this, CompactCalendar.class);
@@ -103,11 +105,18 @@ public class HomePage extends AppCompatActivity {
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new SlideTimer(), 4000, 4000);
 
-        //Set BottomNavigation View
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        SetBottomNavigation();
     }
 
+    private void SetBottomNavigation(){
+        //Set BottomNavigation View
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.home_page_navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        Menu menu = navigation.getMenu();
+        MenuItem menuItem = menu.getItem(0);
+        menuItem.setChecked(true);
+    }
 
     private void getEventList() {
 
@@ -132,7 +141,13 @@ public class HomePage extends AppCompatActivity {
                                     String eventStartTimeAMPM = jsonObj.get("EventStartTimeAMPM").toString();
                                     String eventLocation = jsonObj.get("Location").toString();
                                     String eventDescription = jsonObj.get("Description").toString();
+                                    String eventMedia1 = jsonObj.get("Media1").toString();
+                                    String eventMedia2 = jsonObj.get("Media2").toString();
+                                    String eventMedia3 = jsonObj.get("Media3").toString();
 
+                                    Log.i("Media1: ", eventMedia1 + "\n");
+                                    Log.i("Media2: ", eventMedia2 + "\n");
+                                    Log.i("Media3: ", eventMedia3 + "\n");
                                     EventObjects e = new EventObjects();
                                     e.ID = eventID;
                                     e.Title = eventTitle;
@@ -142,6 +157,9 @@ public class HomePage extends AppCompatActivity {
                                     e.AMPM = eventStartTimeAMPM;
                                     e.Location = eventLocation;
                                     e.Description = eventDescription;
+                                    e.Media1 = eventMedia1;
+                                    e.Media2 = eventMedia2;
+                                    e.Media3 = eventMedia3;
                                     EventObjectList.add(e);
 
                                 } catch (JSONException e) {
