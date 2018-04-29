@@ -45,6 +45,7 @@ public class Notifications extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);  // This is some magic for Android to load a previously saved state for when you are switching between actvities.
         setContentView(R.layout.activity_notifications);  // This links our code to our layout which we defined earlier.
+        SetBottomNavigation();
 
         requestQueue = Volley.newRequestQueue(this);  // This setups up a new request queue which we will need to make HTTP requests.
         getNotificationList();
