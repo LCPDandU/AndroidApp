@@ -53,6 +53,8 @@ public class Notifications extends AppCompatActivity {
         //Create calendar to manipulate day
         NotificationsLimit();
 
+        //Clear the notification array
+        NList.clear();
     }
 
     //Bottom Navigation Bar contains five tabs that will lead to its intended pages: HomePage,

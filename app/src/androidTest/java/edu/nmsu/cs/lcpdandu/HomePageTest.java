@@ -42,6 +42,5 @@ public class HomePageTest {
     public void loadToClickNotifications(){
         onView(withId(R.id.navigation_notifications)).perform(click());
     }
-    
 
 }
