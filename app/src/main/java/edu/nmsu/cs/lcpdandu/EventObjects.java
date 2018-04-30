@@ -9,6 +9,10 @@ public class EventObjects {
     public String AMPM;
     public String Location;
     public String Description;
+    public String Media1;
+    public String Media2;
+    public String Media3;
+
 
 
     public EventObjects(){
@@ -20,6 +24,9 @@ public class EventObjects {
         String Time = this.Time;
         String AMPM = this.AMPM;
         String Location = this.Location;
+        String Media1 = this.Media1;
+        String Media2 = this.Media2;
+        String Media3 = this.Media3;
     }
 
 
