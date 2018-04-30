@@ -1,9 +1,15 @@
 package edu.nmsu.cs.lcpdandu;
 
+import android.content.Intent;
+import android.net.Uri;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,8 +33,8 @@ import java.util.Date;
 public class Notifications extends AppCompatActivity {
 
 
-    private TextView tvNotificationList;  // This will reference our notification list text box.
-    private ArrayList<NotificationObjects> NList = new ArrayList<>(); // Place to store all notification objects
+    private TextView TextViewNoNotifications;  // This will reference our notification list text box.
+    private static ArrayList<NotificationObjects> NList = new ArrayList<>(); // Place to store all notification objects
     private ListView NListView; // Provides a list view to store objects inside.
     private RequestQueue requestQueue;  // This is our requests queue to process our HTTP requests.
     private ListArrayAdapter adapter; // Adapter to store textviews inside of listview with NotificationsObjects.
@@ -39,16 +45,53 @@ public class Notifications extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);  // This is some magic for Android to load a previously saved state for when you are switching between actvities.
         setContentView(R.layout.activity_notifications);  // This links our code to our layout which we defined earlier.
-
-        //this.tvNotificationList = (TextView) findViewById(R.id.tv_notification_list);  // Link our notificationsitory list text output box.
-        //this.tvNotificationList.setMovementMethod(new ScrollingMovementMethod());  // This makes our text box scrollable, for those big GitHub contributors with lots of notifications :)
+        SetBottomNavigation();
 
         requestQueue = Volley.newRequestQueue(this);  // This setups up a new request queue which we will need to make HTTP requests.
         getNotificationList();
-        NListView = (ListView) findViewById(R.id.notifications_list_view);
-        adapter = new ListArrayAdapter(this, NList);
-        NListView.setAdapter(adapter);
 
+        //Create calendar to manipulate day
+        NotificationsLimit();
+
+    }
+
+    //Bottom Navigation Bar contains five tabs that will lead to its intended pages: HomePage,
+    //CompactCalendar, ContactUs, Notifications, and AskTheCity.
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    Intent homeIntent = new Intent(Notifications.this, HomePage.class);
+                    startActivity(homeIntent);
+
+                    return true;
+                case R.id.navigation_events:
+                    Intent eventsIntent = new Intent(Notifications.this, CompactCalendar.class);
+                    startActivity(eventsIntent);
+                    return true;
+                case R.id.navigation_contact:
+                    Intent contactIntent = new Intent(Notifications.this, ContactUs.class);
+                    startActivity(contactIntent);
+                    return true;
+                case R.id.navigation_notifications:
+                    Intent notificationsIntent = new Intent(Notifications.this, Notifications.class);
+                    startActivity(notificationsIntent);
+                    return true;
+                case R.id.navigation_navigation_ask_city:
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_VIEW);
+                    intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                    intent.setData(Uri.parse("http://www.las-cruces.org/en/contact"));
+                    startActivity(intent);
+                    return true;
+            }
+            return false;
+        }
+    };
+
+    private void NotificationsLimit(){
         //Create calendar to manipulate day
         Calendar c = Calendar.getInstance();
         c.setTime(day);
@@ -57,16 +100,16 @@ public class Notifications extends AppCompatActivity {
         day = c.getTime();
     }
 
-    private void addToNotificationList(String notificationID, String notificationTitle, String notificationDescription, String notificationDate, String notificationTime, String notificationAMPM) {
-        String strRow = notificationID + "\n" + notificationTitle + "\n" + notificationDescription + "\n" + notificationDate + "\n" + notificationTime + " " + notificationAMPM;
-        //String currentText = tvNotificationList.getText().toString();
-        //this.tvNotificationList.setText(currentText + "\n\n" + strRow);
+    private void SetBottomNavigation(){
+        //Set BottomNavigation View
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.notifications_navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        Menu menu = navigation.getMenu();
+        MenuItem menuItem = menu.getItem(3);
+        menuItem.setChecked(true);
     }
 
-    private void setNotificationListText(String str) {
-
-        this.tvNotificationList.setText(str);
-    }
 
     private void getNotificationList() {
 
@@ -89,7 +132,6 @@ public class Notifications extends AppCompatActivity {
                                     String notificationDate = jsonObj.get("PostDate").toString();
                                     String notificationTime = jsonObj.get("PostTime").toString();
                                     String notificationAMPM = jsonObj.get("PostTimeAMPM").toString();
-                                    addToNotificationList(notificationID, notificationTitle, notificationDescription, notificationDate, notificationTime, notificationAMPM);
 
                                     NotificationObjects n = new NotificationObjects(notificationID, notificationTitle, notificationDescription, notificationDate, notificationTime, notificationAMPM);
                                     //Convert the date pulled from the database
@@ -97,8 +139,7 @@ public class Notifications extends AppCompatActivity {
 
                                     //If the date set is before the date from the database then add it to the adapter and Nlist
                                     if(day.before(convertedDate)) {
-                                        adapter.add(n);
-                                        NList.add(n);
+                                        Notifications.NList.add(n);
                                     }
 
                                 } catch (JSONException e) {
@@ -107,9 +148,25 @@ public class Notifications extends AppCompatActivity {
                                 }
 
                             }
+                            if(NList.size() == 0){
+                                //No Notifications within the 3 day time limit.
+                                setContentView(R.layout.activity_no_notifications);
+                                TextViewNoNotifications = (TextView) findViewById(R.id.no_notifications_text);
+                                TextViewNoNotifications.setText("No Notifications.");
+                                SetBottomNavigation();
+
+                            }else{
+                                setContentView(R.layout.activity_notifications);
+                                NListView = (ListView) findViewById(R.id.notifications_list_view);
+                                adapter = new ListArrayAdapter(getApplicationContext(), NList);
+                                NListView.setAdapter(adapter);
+                                SetBottomNavigation();
+                            }
                         } else {
                             // The user didn't have any notifications.
-                            setNotificationListText("No notifications found.");
+                            setContentView(R.layout.activity_no_notifications);
+                            TextViewNoNotifications = (TextView) findViewById(R.id.no_notifications_text);
+                            TextViewNoNotifications.setText("No Notifications.");
                         }
 
                     }
