@@ -10,10 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/viewpager"
-        android:layout_above="@+id/home_page_navigation"/>
+        android:layout_above="@+id/navigation"/>
 
     <android.support.design.widget.BottomNavigationView
-        android:id="@+id/home_page_navigation"
+        android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground"

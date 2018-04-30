@@ -3,12 +3,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
@@ -139,9 +135,6 @@ public class CompactCalendar extends AppCompatActivity {
             }
         });
 
-        //Set BottomNavigationView
-        SetBottomNavigation();
-
     }
 
 
@@ -190,53 +183,6 @@ public class CompactCalendar extends AppCompatActivity {
     public static ArrayList<EventObjects> getDayListEvents() {
         return dayListEvents;
     }
-
-    //Bottom Navigation Bar contains five tabs that will lead to its intended pages: HomePage,
-    //CompactCalendar, ContactUs, Notifications, and AskTheCity.
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    Intent homeIntent = new Intent(CompactCalendar.this, HomePage.class);
-                    startActivity(homeIntent);
-
-                    return true;
-                case R.id.navigation_events:
-                    Intent eventsIntent = new Intent(CompactCalendar.this, CompactCalendar.class);
-                    startActivity(eventsIntent);
-                    return true;
-                case R.id.navigation_contact:
-                    Intent contactIntent = new Intent(CompactCalendar.this, ContactUs.class);
-                    startActivity(contactIntent);
-                    return true;
-                case R.id.navigation_notifications:
-                    Intent notificationsIntent = new Intent(CompactCalendar.this, Notifications.class);
-                    startActivity(notificationsIntent);
-                    return true;
-                case R.id.navigation_navigation_ask_city:
-                    Intent intent = new Intent();
-                    intent.setAction(Intent.ACTION_VIEW);
-                    intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                    intent.setData(Uri.parse("http://www.las-cruces.org/en/contact"));
-                    startActivity(intent);
-                    return true;
-            }
-            return false;
-        }
-    };
-
-    private void SetBottomNavigation(){
-        //Set BottomNavigation View
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.calendar_navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-        Menu menu = navigation.getMenu();
-        MenuItem menuItem = menu.getItem(1);
-        menuItem.setChecked(true);
-    }
-
 }
 
 
