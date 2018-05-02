@@ -45,7 +45,7 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".NoNotifications"></activity>
+        <activity android:name=".EventDetails"></activity>
     </application>
 
 </manifest>

@@ -145,9 +145,6 @@ public class HomePage extends AppCompatActivity {
                                     String eventMedia2 = jsonObj.get("Media2").toString();
                                     String eventMedia3 = jsonObj.get("Media3").toString();
 
-                                    Log.i("Media1: ", eventMedia1 + "\n");
-                                    Log.i("Media2: ", eventMedia2 + "\n");
-                                    Log.i("Media3: ", eventMedia3 + "\n");
                                     EventObjects e = new EventObjects();
                                     e.ID = eventID;
                                     e.Title = eventTitle;
@@ -157,9 +154,15 @@ public class HomePage extends AppCompatActivity {
                                     e.AMPM = eventStartTimeAMPM;
                                     e.Location = eventLocation;
                                     e.Description = eventDescription;
-                                    e.Media1 = eventMedia1;
-                                    e.Media2 = eventMedia2;
-                                    e.Media3 = eventMedia3;
+
+                                    e.Media1 = "http://tm4sp18.cs.nmsu.edu/media/";
+                                    e.Media2 = "http://tm4sp18.cs.nmsu.edu/media2/";
+                                    e.Media3 = "http://tm4sp18.cs.nmsu.edu/media3/";
+
+                                    e.Media1 += eventMedia1;
+                                    e.Media2 += eventMedia2;
+                                    e.Media3 += eventMedia3;
+
                                     EventObjectList.add(e);
 
                                 } catch (JSONException e) {

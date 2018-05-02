@@ -45,6 +45,7 @@ public class Notifications extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);  // This is some magic for Android to load a previously saved state for when you are switching between actvities.
         setContentView(R.layout.activity_notifications);  // This links our code to our layout which we defined earlier.
+
         SetBottomNavigation();
 
         requestQueue = Volley.newRequestQueue(this);  // This setups up a new request queue which we will need to make HTTP requests.
@@ -52,6 +53,8 @@ public class Notifications extends AppCompatActivity {
 
         //Create calendar to manipulate day
         NotificationsLimit();
+
+        NList.clear();
 
     }
 
@@ -76,8 +79,7 @@ public class Notifications extends AppCompatActivity {
                     startActivity(contactIntent);
                     return true;
                 case R.id.navigation_notifications:
-                    Intent notificationsIntent = new Intent(Notifications.this, Notifications.class);
-                    startActivity(notificationsIntent);
+                    NList.clear();
                     return true;
                 case R.id.navigation_navigation_ask_city:
                     Intent intent = new Intent();
@@ -148,25 +150,25 @@ public class Notifications extends AppCompatActivity {
                                 }
 
                             }
+
+
                             if(NList.size() == 0){
                                 //No Notifications within the 3 day time limit.
                                 setContentView(R.layout.activity_no_notifications);
                                 TextViewNoNotifications = (TextView) findViewById(R.id.no_notifications_text);
                                 TextViewNoNotifications.setText("No Notifications.");
                                 SetBottomNavigation();
-
                             }else{
-                                setContentView(R.layout.activity_notifications);
                                 NListView = (ListView) findViewById(R.id.notifications_list_view);
                                 adapter = new ListArrayAdapter(getApplicationContext(), NList);
                                 NListView.setAdapter(adapter);
-                                SetBottomNavigation();
                             }
                         } else {
                             // The user didn't have any notifications.
                             setContentView(R.layout.activity_no_notifications);
                             TextViewNoNotifications = (TextView) findViewById(R.id.no_notifications_text);
                             TextViewNoNotifications.setText("No Notifications.");
+                            SetBottomNavigation();
                         }
 
                     }

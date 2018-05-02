@@ -58,5 +58,9 @@
         android:background="?android:attr/windowBackground"
         android:layout_alignParentBottom="true"
         app:menu="@menu/navigation" />
+        <!--
+        app:itemBackground="@color/colorPrimary"
+        app:itemIconTint="@drawable/bottom_navigation_colors"
+        app:itemTextColor="@drawable/bottom_navigation_colors"-->
 
 </RelativeLayout>

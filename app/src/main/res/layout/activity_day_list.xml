@@ -2,22 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:background="#fff3f3f3"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:descendantFocusability="blocksDescendants">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/border"
-        android:layout_marginBottom="15dp">
+        android:layout_marginBottom="20dp"
+        android:elevation="5dp"
+        android:background="@drawable/rectangle">
 
         <TextView android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:id="@+id/events_list_title"
             tools:text="Title"
-            android:textSize="18sp"
             android:layout_marginRight="8dp"
             android:layout_marginLeft="8dp"
+            android:textSize="18sp"
             android:textStyle="bold"/>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -47,32 +51,44 @@
                 android:ellipsize="end"/>
         </LinearLayout>
 
-        <TextView android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+        <TextView android:layout_height="0dp"
+            android:layout_width="0dp"
             android:layout_marginTop="10dp"
             android:id="@+id/events_list_location"
             tools:text="Location"
+            android:visibility="invisible"
             android:textSize="16sp"
             android:layout_marginRight="8dp"
             android:layout_marginLeft="8dp"
             android:ellipsize="end"/>
 
-        <Button
-            android:layout_width="match_parent"
-            android:text="Click Here for more details"
-            android:layout_height="wrap_content"
+        <TextView android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="8dp"
+            android:id="@+id/events_list_description"
+            tools:text="Description"
+            android:textSize="16sp"
             android:layout_marginRight="8dp"
-            android:background="@drawable/corners"
-            android:onClick="clickEventDetails"
-            android:textAlignment="center"
-            android:textColor="@android:color/background_light"
-            android:textSize="14sp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="8dp"
             android:ellipsize="end"/>
 
+        <TextView android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:id="@+id/events_list_media1"
+            tools:text="Media1"
+            android:visibility="invisible" />
 
+        <TextView android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:id="@+id/events_list_media2"
+            tools:text="Media2"
+            android:visibility="invisible" />
+
+        <TextView android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:id="@+id/events_list_media3"
+            tools:text="Media3"
+            android:visibility="invisible" />
 
     </LinearLayout>
 </LinearLayout>
