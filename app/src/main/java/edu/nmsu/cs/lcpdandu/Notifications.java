@@ -54,6 +54,7 @@ public class Notifications extends AppCompatActivity {
         //Create calendar to manipulate day
         NotificationsLimit();
 
+        //Clear the notification array
         NList.clear();
 
     }
@@ -98,7 +99,7 @@ public class Notifications extends AppCompatActivity {
         Calendar c = Calendar.getInstance();
         c.setTime(day);
         //Subtract how many days wanted for the cutoff of notifications
-        c.add(Calendar.DATE, -3);
+        c.add(Calendar.DATE, -5);
         day = c.getTime();
     }
 
