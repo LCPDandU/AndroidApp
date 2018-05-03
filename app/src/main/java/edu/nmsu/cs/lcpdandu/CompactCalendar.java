@@ -51,6 +51,7 @@ public class CompactCalendar extends AppCompatActivity {
         compactCalendar = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
         compactCalendar.setFirstDayOfWeek(Calendar.SUNDAY);
         compactCalendar.setUseThreeLetterAbbreviation(true);
+        compactCalendar.shouldDrawIndicatorsBelowSelectedDays(true);
         Date eventDay = new Date();
         Calendar calendar = new GregorianCalendar();
         actionBar.setTitle(dateFormatMonth.format(eventDay));
