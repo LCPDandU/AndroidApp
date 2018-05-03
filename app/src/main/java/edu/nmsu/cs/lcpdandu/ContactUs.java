@@ -52,8 +52,6 @@ public class ContactUs extends AppCompatActivity {
                     startActivity(eventsIntent);
                     return true;
                 case R.id.navigation_contact:
-                    Intent contactIntent = new Intent(ContactUs.this, ContactUs.class);
-                    startActivity(contactIntent);
                     return true;
                 case R.id.navigation_notifications:
                     Intent notificationsIntent = new Intent(ContactUs.this, Notifications.class);

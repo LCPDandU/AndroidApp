@@ -20,6 +20,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+
+import android.widget.CalendarView;
 import android.widget.Toast;
 import android.content.Context;
 
@@ -55,7 +57,6 @@ public class CompactCalendar extends AppCompatActivity {
         Date eventDay = new Date();
         Calendar calendar = new GregorianCalendar();
         actionBar.setTitle(dateFormatMonth.format(eventDay));
-
 
 
         for (EventObjects e : HomePage.getEventObjectList()) {
@@ -112,13 +113,11 @@ public class CompactCalendar extends AppCompatActivity {
             public void onDayClick(Date dateClicked) {
                 Context context = getApplicationContext();
                 int setVariable = 0;
-                String title = "";
                 //Check if the eventday is the same as the day clicked. If it is then setVariable is 1
                 for(int i = 0; i < HomePage.getEventObjectList().size(); i++){
                     Date d = new Date(CalendarEventList.get(i).getTimeInMillis());
                     if ((dateClicked.compareTo(d)) == 0) {
                         setVariable = 1;
-                        title = CalendarEventList.get(i).getData().toString();
                         dayListEvents.add(HomePage.getEventObjectList().get(i));
                     }
                 }//End For
@@ -143,16 +142,6 @@ public class CompactCalendar extends AppCompatActivity {
         //Set BottomNavigationView
         SetBottomNavigation();
 
-    }
-
-
-    //TODO: Switch the button from website to list format
-    public void clickViewList(View v) {
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_VIEW);
-        intent.addCategory(Intent.CATEGORY_BROWSABLE);
-        intent.setData(Uri.parse("http://www.las-cruces.org/departments/police-department"));
-        startActivity(intent);
     }
 
 
@@ -202,11 +191,8 @@ public class CompactCalendar extends AppCompatActivity {
                 case R.id.navigation_home:
                     Intent homeIntent = new Intent(CompactCalendar.this, HomePage.class);
                     startActivity(homeIntent);
-
                     return true;
                 case R.id.navigation_events:
-                    Intent eventsIntent = new Intent(CompactCalendar.this, CompactCalendar.class);
-                    startActivity(eventsIntent);
                     return true;
                 case R.id.navigation_contact:
                     Intent contactIntent = new Intent(CompactCalendar.this, ContactUs.class);
@@ -236,6 +222,10 @@ public class CompactCalendar extends AppCompatActivity {
         Menu menu = navigation.getMenu();
         MenuItem menuItem = menu.getItem(1);
         menuItem.setChecked(true);
+    }
+
+    public static ArrayList<Event> getCalendarEventList() {
+        return CalendarEventList;
     }
 
 }
