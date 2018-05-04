@@ -54,9 +54,6 @@ public class Notifications extends AppCompatActivity {
         //Create calendar to manipulate day
         NotificationsLimit();
 
-        //Clear the notification array
-        NList.clear();
-
     }
 
     //Bottom Navigation Bar contains five tabs that will lead to its intended pages: HomePage,
@@ -69,18 +66,19 @@ public class Notifications extends AppCompatActivity {
                 case R.id.navigation_home:
                     Intent homeIntent = new Intent(Notifications.this, HomePage.class);
                     startActivity(homeIntent);
-
+                    NList.clear();
                     return true;
                 case R.id.navigation_events:
                     Intent eventsIntent = new Intent(Notifications.this, CompactCalendar.class);
                     startActivity(eventsIntent);
+                    NList.clear();
                     return true;
                 case R.id.navigation_contact:
                     Intent contactIntent = new Intent(Notifications.this, ContactUs.class);
                     startActivity(contactIntent);
+                    NList.clear();
                     return true;
                 case R.id.navigation_notifications:
-                    NList.clear();
                     return true;
                 case R.id.navigation_navigation_ask_city:
                     Intent intent = new Intent();
@@ -88,6 +86,7 @@ public class Notifications extends AppCompatActivity {
                     intent.addCategory(Intent.CATEGORY_BROWSABLE);
                     intent.setData(Uri.parse("http://www.las-cruces.org/en/contact"));
                     startActivity(intent);
+                    NList.clear();
                     return true;
             }
             return false;

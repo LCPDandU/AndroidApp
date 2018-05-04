@@ -27,6 +27,7 @@
             android:layout_width="wrap_content"
             android:id="@+id/events_list_details_title"
             tools:text="Title"
+            android:textColor="#606060"
             android:textSize="18sp"
             android:layout_marginRight="8dp"
             android:layout_marginLeft="8dp"
@@ -95,6 +96,7 @@
                 android:layout_width="wrap_content"
                 android:id="@+id/events_list_details_date"
                 tools:text="Date"
+                android:textColor="#606060"
                 android:textSize="14sp"
                 android:layout_marginRight="8dp"
                 android:layout_marginLeft="8dp"/>
@@ -103,12 +105,14 @@
                 android:layout_width="wrap_content"
                 android:id="@+id/events_list_details_time"
                 tools:text="Time"
+                android:textColor="#606060"
                 android:textSize="14sp"/>
 
             <TextView android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:id="@+id/events_list_details_ampm"
                 tools:text="AMPM"
+                android:textColor="#606060"
                 android:textSize="14sp"
                 android:ellipsize="end"/>
         </LinearLayout>
@@ -132,6 +136,7 @@
             android:layout_marginTop="10dp"
             android:id="@+id/events_list_details_location"
             tools:text="Location"
+            android:textColor="#606060"
             android:textSize="14sp"
             android:layout_marginRight="8dp"
             android:layout_marginLeft="8dp"
@@ -156,6 +161,7 @@
             android:layout_marginTop="10dp"
             android:id="@+id/events_list_details_description"
             tools:text="Description"
+            android:textColor="#606060"
             android:textSize="14sp"
             android:layout_marginRight="8dp"
             android:layout_marginLeft="8dp"

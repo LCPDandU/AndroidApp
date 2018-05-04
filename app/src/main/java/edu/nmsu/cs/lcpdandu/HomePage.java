@@ -49,7 +49,6 @@ public class HomePage extends AppCompatActivity {
                 case R.id.navigation_home:
                     Intent homeIntent = new Intent(HomePage.this, HomePage.class);
                     startActivity(homeIntent);
-
                     return true;
                 case R.id.navigation_events:
                     Intent eventsIntent = new Intent(HomePage.this, CompactCalendar.class);

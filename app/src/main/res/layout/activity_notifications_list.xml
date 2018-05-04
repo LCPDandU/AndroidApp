@@ -9,8 +9,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
         android:background="@drawable/rectangle"
-        android:layout_marginBottom="20dp"
         android:elevation="10dp">
 
         <TextView android:layout_height="wrap_content"
@@ -18,11 +25,8 @@
             android:id="@+id/notifications_list_title"
             tools:text="Title"
             android:textSize="18sp"
-            android:layout_marginRight="8dp"
-            android:layout_marginLeft="8dp"
             android:textStyle="bold"
             android:textColor="#606060" />
-            <!--android:layout_below="@+id/notifications_list_id"/>-->
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
@@ -34,10 +38,7 @@
                 android:id="@+id/notifications_list_date"
                 tools:text="Date"
                 android:textSize="14sp"
-                android:layout_marginRight="8dp"
-                android:layout_marginLeft="8dp"
                 android:textColor="#606060" />
-                <!--android:layout_below="@+id/notifications_list_description"/>-->
 
             <TextView android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
@@ -45,7 +46,6 @@
                 tools:text="Time"
                 android:textSize="14sp"
                 android:textColor="#606060" />
-                <!--android:layout_below="@+id/notifications_list_date"/>-->
 
             <TextView android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
@@ -54,15 +54,7 @@
                 android:textSize="14sp"
                 android:ellipsize="end"
                 android:textColor="#606060" />
-                <!--android:layout_below="@+id/notifications_list_time"/>-->
         </LinearLayout>
-        <!--<TextView android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:id="@+id/notifications_list_id"
-            tools:text="Title"
-            android:textSize="18sp"
-            android:layout_marginRight="8dp"
-            android:layout_marginLeft="8dp"/>-->
 
         <TextView android:layout_height="wrap_content"
             android:layout_width="wrap_content"
@@ -70,11 +62,8 @@
             android:id="@+id/notifications_list_description"
             tools:text="Description"
             android:textSize="16sp"
-            android:layout_marginRight="8dp"
-            android:layout_marginLeft="8dp"
             android:textColor="#606060"
             android:ellipsize="end"/>
-            <!--android:layout_below="@+id/notifications_list_title"-->
 
     </LinearLayout>
 </LinearLayout>

@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp"
-    tools:context="edu.nmsu.cs.lcpdandu.Notifications">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="edu.nmsu.cs.lcpdandu.DayList">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
         <ListView
             android:id="@+id/events_list_view"
             android:layout_height="match_parent"
             android:layout_width="match_parent">
+            <!--android:layout_marginBottom="56dp"-->
         </ListView>
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+   <!-- <android.support.design.widget.BottomNavigationView
+    android:id="@+id/day_list_navigation"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:background="?android:attr/windowBackground"
+    android:layout_alignParentBottom="true"
+    app:menu="@menu/navigation" />-->
+
+</RelativeLayout>
