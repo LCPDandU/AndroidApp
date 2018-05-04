@@ -1,6 +1,7 @@
 package edu.nmsu.cs.lcpdandu;
 
 import android.content.Context;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.view.PagerAdapter;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -18,7 +19,7 @@ public class ViewPagerAdapter extends PagerAdapter {
     private LayoutInflater mLayoutInflater;//Instantiates a layout XML file into its corresponding View objects.
 
     //Images for Image Slider
-    private int [] images = {R.drawable.annie_spratt_441579_unsplash, R.drawable.james_baldwin_276255_unsplash, R.drawable.david_sola_530108_unsplash};
+    private int [] images = {R.drawable.police_men, R.drawable.building_storm, R.drawable.firetruck};
 
     //Texts for ImageSlider
     private int [] texts = {R.string.slide_text_1, R.string.slide_text_2, R.string.slide_text_3};
@@ -37,7 +38,7 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
-        return view == ((RelativeLayout) object);
+        return view == ((ConstraintLayout) object);
     }
 
     @Override
@@ -66,7 +67,7 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        container.removeView((RelativeLayout) object);
+        container.removeView((ConstraintLayout) object);
     }
 
 }

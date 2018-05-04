@@ -83,13 +83,6 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-
-        //Check if the EventObjectList has already been filled. If not then call requestQueue and getEventList
-        if(EventObjectList.size()  == 0) {
-            requestQueue = Volley.newRequestQueue(this);  // This setups up a new request queue which we will need to make HTTP requests.
-            getEventList();
-        }
-
         mTextMessage = (TextView) findViewById(R.id.message);
 
         //Takes the activity_main_slider xml and stores this inside of
@@ -107,6 +100,15 @@ public class HomePage extends AppCompatActivity {
         SetBottomNavigation();
     }
 
+    //On resume clear the arraylist and recall the eventList
+    @Override
+    public void onResume() {
+        super.onResume();
+        EventObjectList.clear();
+        CompactCalendar.getCalendarEventList().clear();
+        requestQueue = Volley.newRequestQueue(this);  // This setups up a new request queue which we will need to make HTTP requests.
+        getEventList();
+    }
     private void SetBottomNavigation(){
         //Set BottomNavigation View
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.home_page_navigation);
