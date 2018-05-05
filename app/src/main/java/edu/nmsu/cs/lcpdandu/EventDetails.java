@@ -2,6 +2,8 @@ package edu.nmsu.cs.lcpdandu;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -58,9 +60,9 @@ public class EventDetails extends AppCompatActivity {
         DescriptionTextView = (TextView) findViewById(R.id.events_list_details_description);
         DescriptionTextView.setText(getIntent().getStringExtra("Description"));
 
-        String Media1Url = getIntent().getStringExtra("Media1");
-        String Media2Url = getIntent().getStringExtra("Media2");
-        String Media3Url = getIntent().getStringExtra("Media3");
+        final String Media1Url = getIntent().getStringExtra("Media1");
+        final String Media2Url = getIntent().getStringExtra("Media2");
+        final String Media3Url = getIntent().getStringExtra("Media3");
 
         context = this;
 
@@ -80,6 +82,7 @@ public class EventDetails extends AppCompatActivity {
 
         Media1ImageView = (NetworkImageView) findViewById(R.id.events_list_details_media1);
         Media1ImageView.setImageUrl(Media1Url, mImageLoader);
+        Media1ImageView.setColorFilter(Color.parseColor("#6F000000"));
 
         Media2ImageView = (NetworkImageView) findViewById(R.id.events_list_details_media2);
         Media2ImageView.setImageUrl(Media2Url, mImageLoader);
@@ -87,5 +90,38 @@ public class EventDetails extends AppCompatActivity {
         Media3ImageView = (NetworkImageView) findViewById(R.id.events_list_details_media3);
         Media3ImageView.setImageUrl(Media3Url, mImageLoader);
 
+        Media1ImageView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                SelectedMediaImageView = (NetworkImageView) findViewById(R.id.events_list_details_media);
+                SelectedMediaImageView.setImageUrl(Media1Url, mImageLoader);
+                Media1ImageView.setColorFilter(Color.parseColor("#6F000000"));
+                Media2ImageView.setColorFilter(null);
+                Media3ImageView.setColorFilter(null);
+
+            }
+        });
+
+        Media2ImageView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                SelectedMediaImageView = (NetworkImageView) findViewById(R.id.events_list_details_media);
+                SelectedMediaImageView.setImageUrl(Media2Url, mImageLoader);
+                Media2ImageView.setColorFilter(Color.parseColor("#6F000000"));
+                Media1ImageView.setColorFilter(null);
+                Media3ImageView.setColorFilter(null);
+
+            }
+        });
+
+        Media3ImageView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                SelectedMediaImageView = (NetworkImageView) findViewById(R.id.events_list_details_media);
+                SelectedMediaImageView.setImageUrl(Media3Url, mImageLoader);
+                Media3ImageView.setColorFilter(Color.parseColor("#6F000000"));
+                Media2ImageView.setColorFilter(null);
+                Media1ImageView.setColorFilter(null);
+            }
+        });
     }
 }
+
+
