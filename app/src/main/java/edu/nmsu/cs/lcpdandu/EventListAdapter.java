@@ -21,7 +21,7 @@ public class EventListAdapter extends ArrayAdapter<EventObjects> {
     }
 
     // Hold views of the ListView to improve its scrolling performance
-    static class ViewHolder {
+    public static class ViewHolder {
         public TextView TitleTextView;
         public TextView LocationTextView;
         public TextView DescriptionTextView;

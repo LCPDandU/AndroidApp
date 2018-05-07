@@ -9,6 +9,12 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class ListArrayAdapter extends ArrayAdapter<NotificationObjects> {
+    private TextView TitleTextView;
+    private TextView DescriptionTextView;
+    private TextView DateTextView;
+    private TextView TimeTextView;
+    private TextView AMPMTextView;
+
     public ListArrayAdapter(Context context, ArrayList<NotificationObjects> n) {
         super(context, 0, n);
     }
@@ -23,11 +29,11 @@ public class ListArrayAdapter extends ArrayAdapter<NotificationObjects> {
         }
 
         // Lookup view for data population
-        TextView TitleTextView = (TextView) convertView.findViewById(R.id.notifications_list_title);
-        TextView DescriptionTextView = (TextView) convertView.findViewById(R.id.notifications_list_description);
-        TextView DateTextView = (TextView) convertView.findViewById(R.id.notifications_list_date);
-        TextView TimeTextView = (TextView) convertView.findViewById(R.id.notifications_list_time);
-        TextView AMPMTextView = (TextView) convertView.findViewById(R.id.notifications_list_ampm);
+        TitleTextView = (TextView) convertView.findViewById(R.id.notifications_list_title);
+        DescriptionTextView = (TextView) convertView.findViewById(R.id.notifications_list_description);
+        DateTextView = (TextView) convertView.findViewById(R.id.notifications_list_date);
+        TimeTextView = (TextView) convertView.findViewById(R.id.notifications_list_time);
+        AMPMTextView = (TextView) convertView.findViewById(R.id.notifications_list_ampm);
 
         // Return the completed view to render on screen
         TitleTextView.setText(n.Title);

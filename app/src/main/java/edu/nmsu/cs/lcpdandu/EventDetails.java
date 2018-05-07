@@ -42,6 +42,13 @@ public class EventDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_details);
 
+        setTextViews();
+        setNetworkImageViews();
+    }
+
+    //Set text views for this page
+    public void setTextViews(){
+
         TitleTextView = (TextView) findViewById(R.id.events_list_details_title);
         TitleTextView.setText(getIntent().getStringExtra("Title"));
 
@@ -59,6 +66,12 @@ public class EventDetails extends AppCompatActivity {
 
         DescriptionTextView = (TextView) findViewById(R.id.events_list_details_description);
         DescriptionTextView.setText(getIntent().getStringExtra("Description"));
+    }
+
+
+    //Retrieve media images using volley and store them inside the
+    //three networkImageViews.
+    public void setNetworkImageViews(){
 
         final String Media1Url = getIntent().getStringExtra("Media1");
         final String Media2Url = getIntent().getStringExtra("Media2");
@@ -90,6 +103,7 @@ public class EventDetails extends AppCompatActivity {
         Media3ImageView = (NetworkImageView) findViewById(R.id.events_list_details_media3);
         Media3ImageView.setImageUrl(Media3Url, mImageLoader);
 
+        //If clicked on change the SelectedMediaImageView to this picture
         Media1ImageView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 SelectedMediaImageView = (NetworkImageView) findViewById(R.id.events_list_details_media);
@@ -101,6 +115,7 @@ public class EventDetails extends AppCompatActivity {
             }
         });
 
+        //If clicked on change the SelectedMediaImageView to this picture
         Media2ImageView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 SelectedMediaImageView = (NetworkImageView) findViewById(R.id.events_list_details_media);
@@ -112,6 +127,7 @@ public class EventDetails extends AppCompatActivity {
             }
         });
 
+        //If clicked on change the SelectedMediaImageView to this picture
         Media3ImageView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 SelectedMediaImageView = (NetworkImageView) findViewById(R.id.events_list_details_media);
