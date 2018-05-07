@@ -108,7 +108,7 @@ public class ContactUs extends AppCompatActivity {
     public void makeCall()
     {
         Intent intent = new Intent(Intent.ACTION_CALL);
-        intent.setData(Uri.parse("tel:" + "5756400344"));
+        intent.setData(Uri.parse("tel:" + "5755260795"));
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
 
             requestForCallPermission();

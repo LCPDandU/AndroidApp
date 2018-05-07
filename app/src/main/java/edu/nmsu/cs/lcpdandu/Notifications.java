@@ -200,4 +200,8 @@ public class Notifications extends AppCompatActivity {
         }
         return convertedDate;
     }
+
+    public static ArrayList<NotificationObjects> getNList(){
+        return NList;
+    }
 }

@@ -1,98 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/SlideLinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:gravity="bottom|center"
     android:orientation="vertical">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
+
+    <TextView
+        android:id="@+id/ContactUs_Text"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginBottom="20dp"
-        xmlns:tools="http://schemas.android.com/tools">
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:textColor="#606060"
+        android:text="@string/contact_text1"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/contact_text1" />
 
-        <TextView android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:id="@+id/ContactUs_Text"
-            android:text="@string/contact_text1"
-            tools:text="@string/contact_text1"
-            android:textSize="25sp"
-            android:layout_marginRight="8dp"
+    <Button
+        android:id="@+id/LasCrucesPoliceWebsite"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="142dp"
+        android:background="@color/colorPrimaryDark"
+        android:elevation="15dp"
+        android:onClick="clickPoliceWebsite"
+        android:text="@string/contact_website_button"
+        android:textAlignment="center"
+        android:textColor="@android:color/background_light"
+        android:textSize="14sp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/contact_website_button" />
+
+    <TextView
+        android:id="@+id/contact_social_media"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:gravity="center"
+        android:text="@string/contact_social_media"
+        android:textColor="#606060"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LasCrucesPoliceWebsite"
+        tools:text="@string/contact_social_media" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contact_social_media">
+
+        <ImageButton
+            android:id="@+id/FacebookButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginLeft="8dp"
-            android:gravity="center"
-            android:layout_marginBottom="20dp" />
+            android:layout_marginRight="8dp"
+            android:background="@drawable/if_icon_facebook_material_design"
+            android:onClick="clickPoliceFacebook" />
 
-        <Button
-            android:id="@+id/LasCrucesPoliceWebsite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <ImageButton
+            android:id="@+id/TwitterButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:background="@color/colorPrimaryDark"
-            android:elevation="15dp"
-            android:onClick="clickPoliceWebsite"
-            android:text="@string/contact_website_button"
-            android:textAlignment="center"
-            android:textColor="@android:color/background_light"
-            android:textSize="14sp"
-            tools:text="@string/contact_website_button"
-            android:layout_marginBottom="100dp"/>
+            android:background="@drawable/if_icon_twitter_material_design"
+            android:onClick="clickPoliceTwitter" />
 
-        <TextView android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:id="@+id/contact_social_media"
-            android:text="@string/contact_social_media"
-            tools:text="@string/contact_social_media"
-            android:textSize="25sp"
-            android:layout_marginRight="8dp"
+        <ImageButton
+            android:id="@+id/PhoneButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginLeft="8dp"
-            android:gravity="center"
-            android:layout_marginBottom="20dp" />
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            xmlns:tools="http://schemas.android.com/tools">
-            <ImageButton
-                android:id="@+id/FacebookButton"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:onClick="clickPoliceFacebook"
-                android:background="@drawable/if_icon_facebook_material_design" />
-            <ImageButton
-                android:id="@+id/TwitterButton"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:onClick="clickPoliceTwitter"
-                android:background="@drawable/if_icon_twitter_material_design"/>
-            <ImageButton
-                android:id="@+id/PhoneButton"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:onClick="callPhone"
-                android:background="@color/mustard_yellow"
-                android:src="@drawable/ic_phone_black_24dp" />
+            android:layout_marginRight="8dp"
+            android:background="@color/mustard_yellow"
+            android:onClick="callPhone"
+            android:src="@drawable/ic_phone_black_24dp" />
 
-        </LinearLayout>
     </LinearLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/contact_us_navigation"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/navigation" />
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
 

@@ -38,7 +38,7 @@ public class ListArrayAdapter extends ArrayAdapter<NotificationObjects> {
         // Return the completed view to render on screen
         TitleTextView.setText(n.Title);
         DescriptionTextView.setText(n.Description);
-        DateTextView.setText(n.Date);
+        DateTextView.setText(n.Date + " ");
         TimeTextView.setText(n.Time);
         AMPMTextView.setText(n.AMPM);
         return convertView;

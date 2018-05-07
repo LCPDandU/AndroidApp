@@ -60,7 +60,7 @@ public class EventListAdapter extends ArrayAdapter<EventObjects> {
         // Return the completed view to render on screen
         ViewHolder holder = (ViewHolder) convertView.getTag();
         holder.TitleTextView.setText(e.Title);
-        holder.DateTextView.setText(e.Date);
+        holder.DateTextView.setText(e.Date + " ");
         holder.TimeTextView.setText(e.Time);
         holder.AMPMTextView.setText(e.AMPM);
         holder.LocationTextView.setText(e.Location);

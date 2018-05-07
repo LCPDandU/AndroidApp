@@ -25,58 +25,38 @@ public class HomePageTest {
     @Rule
     public ActivityTestRule<ContactUs> mActivityContactRule =
             new ActivityTestRule<>(ContactUs.class);
+
+    //Test can click on home page from home page
     @Test
     public void loadToClickHome(){
         onView(withId(R.id.navigation_home)).perform(click());
     }
 
+    //Test can get to events from homepage
     @Test
     public void loadToClickEvents(){
         onView(withId(R.id.navigation_events)).perform(click());
     }
 
+    //Test can get to contact page from homepage
     @Test
     public void loadToClickContact(){
         onView(withId(R.id.navigation_contact)).perform(click());
     }
 
+    //Test can get to notifications from homepage
     @Test
     public void loadToClickNotifications(){
         onView(withId(R.id.navigation_notifications)).perform(click());
     }
 
+    //Test can get to ask the city from homepage
     @Test
     public void askTheCity(){
         onView(withId(R.id.navigation_navigation_ask_city)).perform(click());
     }
 
-    @Test
-    public void eventBack(){
-        onView(withId(R.id.navigation_events)).perform(click());
-        onView(withId(R.id.prev_button)).perform(click());
-    }
-
-    @Test
-    public void eventNext(){
-        onView(withId(R.id.navigation_events)).perform(click());
-        onView(withId(R.id.next_button)).perform(click());
-    }
-
-    @Test
-    public void twitterButton(){
-        onView(withId(R.id.TwitterButton)).perform(click());
-    }
-
-    @Test
-    public void facebookButton(){
-        onView(withId(R.id.FacebookButton)).perform(click());
-    }
-
-    @Test
-    public void cityOfLasCruces(){
-        onView(withId(R.id.contact_social_media)).perform(click());
-    }
-
+    //Test can click homepage from homepage then navigate each page
     @Test
     public void testClickFromEachNavigation(){
         onView(withId(R.id.navigation_home)).perform(click());
@@ -86,8 +66,4 @@ public class HomePageTest {
         onView(withId(R.id.navigation_navigation_ask_city)).perform(click());
     }
 
-    @Test
-    public void callButton(){
-        onView(withId(R.id.PhoneButton)).perform(click());
-    }
 }
