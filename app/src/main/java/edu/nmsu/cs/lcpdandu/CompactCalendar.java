@@ -224,6 +224,7 @@ public class CompactCalendar extends AppCompatActivity {
         menuItem.setChecked(true);
     }
 
+    //Accessor getDayListEvents
     public static ArrayList<Event> getCalendarEventList() {
         return CalendarEventList;
     }

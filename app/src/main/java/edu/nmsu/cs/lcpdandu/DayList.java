@@ -63,52 +63,7 @@ public class DayList extends AppCompatActivity {
         adapter = new EventListAdapter(this, CompactCalendar.getDayListEvents());
         EListView.setAdapter(adapter);
 
-        //SetBottomNavigation();
 
     }
-/*
-    //Bottom Navigation Bar contains five tabs that will lead to its intended pages: HomePage,
-    //CompactCalendar, ContactUs, Notifications, and AskTheCity.
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    Intent homeIntent = new Intent(DayList.this, HomePage.class);
-                    startActivity(homeIntent);
-                    return true;
-                case R.id.navigation_events:
-                    Intent eventsIntent = new Intent(DayList.this, CompactCalendar.class);
-                    startActivity(eventsIntent);
-                    return true;
-                case R.id.navigation_contact:
-                    Intent contactIntent = new Intent(DayList.this, ContactUs.class);
-                    startActivity(contactIntent);
-                    return true;
-                case R.id.navigation_notifications:
-                    Intent notificationsIntent = new Intent(DayList.this, Notifications.class);
-                    startActivity(notificationsIntent);
 
-                case R.id.navigation_navigation_ask_city:
-                    Intent intent = new Intent();
-                    intent.setAction(Intent.ACTION_VIEW);
-                    intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                    intent.setData(Uri.parse("http://www.las-cruces.org/en/contact"));
-                    startActivity(intent);
-                    return true;
-            }
-            return false;
-        }
-    };
-
-    private void SetBottomNavigation(){
-        //Set BottomNavigation View
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.day_list_navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-        Menu menu = navigation.getMenu();
-        MenuItem menuItem = menu.getItem(0);
-        menuItem.setChecked(true);
-    }*/
 }
